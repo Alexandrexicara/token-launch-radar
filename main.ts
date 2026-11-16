@@ -26,6 +26,7 @@ type Candidate = {
 const ROOT = resolve(process.env.RADAR_ROOT || ".");
 const INPUT = resolve(ROOT, process.env.RADAR_SNAPSHOT || "data/defillama-protocols.json");
 const OUTPUT = resolve(ROOT, "board.json");
+const DASHBOARD_OUTPUT = resolve(ROOT, "dashboard/board.json");
 const EXCLUDED = /wrapped|staked|liquid staking|restaking receipt|vault share|bridge wrapper|receipt token/i;
 const USD = (n: number) => Math.round(n);
 const clamp = (n: number, a: number, b: number) => Math.max(a, Math.min(b, n));
@@ -96,8 +97,10 @@ export async function buildBoard(snapshot?: Protocol[]) {
   }).filter(x => x.token_status !== "excluded")
     .sort((a, b) => (b.score - a.score) || (b.tvl_usd - a.tvl_usd));
   rows.forEach((r, i) => r.rank = i + 1);
+  const payload = JSON.stringify({ generated_at: now, source: "Make.fun sealed snapshot supplied at data/defillama-protocols.json", methodology: "Conservative metadata screen; all no-token leads require manual verification.", count: rows.length, board: rows }, null, 2) + "\n";
   await mkdir(dirname(OUTPUT), { recursive: true });
-  await writeFile(OUTPUT, JSON.stringify({ generated_at: now, source: "Make.fun sealed snapshot supplied at data/defillama-protocols.json", methodology: "Conservative metadata screen; all no-token leads require manual verification.", count: rows.length, board: rows }, null, 2) + "\n");
+  await mkdir(dirname(DASHBOARD_OUTPUT), { recursive: true });
+  await Promise.all([writeFile(OUTPUT, payload), writeFile(DASHBOARD_OUTPUT, payload)]);
   return rows;
 }
 async function main() {
