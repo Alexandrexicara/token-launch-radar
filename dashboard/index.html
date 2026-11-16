@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#080d19"><title>Token Launch Radar</title>
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand"><span class="brand-mark">◈</span><div><b>LAUNCH RADAR</b><small>RESEARCH TERMINAL</small></div></div>
+    <div class="side-label">WORKSPACE</div>
+    <button class="nav active">◉ <span>Discovery board</span></button>
+    <button class="nav" id="methodBtn">⌘ <span>Methodology</span></button>
+    <div class="side-bottom"><span class="pulse"></span> OFFLINE-FIRST MODE</div>
+  </aside>
+  <main class="main">
+    <header class="topbar"><div><div class="eyebrow">WEB3 INTELLIGENCE / 001</div><h1>Token Launch Radar</h1><p>Find the next generation of protocols before a token launch.</p></div><div class="top-actions"><label class="upload">Load board.json<input id="fileInput" type="file" accept=".json,application/json"></label><span class="live"><i></i> LOCAL DATA</span></div></header>
+    <section class="stats">
+      <article><span>PROTOCOLS TRACKED</span><strong id="total">—</strong><small>In current snapshot</small></article>
+      <article><span>NO-TOKEN SIGNALS</span><strong id="leads">—</strong><small>Require manual verification</small></article>
+      <article><span>HIGH TVL LEADS</span><strong id="highTvl">—</strong><small>TVL above $100M</small></article>
+      <article><span>SNAPSHOT UPDATED</span><strong class="date" id="updated">—</strong><small>Source timestamp</small></article>
+    </section>
+    <section class="toolbar"><div class="search-wrap">⌕ <input id="search" placeholder="Search protocols, chains or categories..."></div><select id="status"><option value="all">All signals</option><option value="no_token_signal">No-token signal</option><option value="needs_manual_review">Manual review</option></select><select id="sort"><option value="score">Sort: Radar score</option><option value="tvl">Sort: TVL</option><option value="name">Sort: Name</option></select></section>
+    <section class="content-grid">
+      <div class="board-panel"><div class="panel-head"><div><h2>Discovery board</h2><p>Ranked leads · evidence before hype</p></div><span id="shown" class="count">0 RESULTS</span></div><div class="table-wrap"><table><thead><tr><th>RANK / PROTOCOL</th><th>CHAIN</th><th>TVL</th><th>TOKEN SIGNAL</th><th>SCORE</th></tr></thead><tbody id="rows"><tr><td colspan="5" class="empty">Load the official board.json to view ranked protocols.</td></tr></tbody></table></div></div>
+      <aside class="detail" id="detail"><div class="detail-empty"><span>◈</span><h3>Protocol intelligence</h3><p>Select a protocol to inspect its evidence, valuation scenarios and cautious farming checklist.</p></div></aside>
+    </section>
+    <footer><span>TOKEN LAUNCH RADAR</span><span>Estimates are heuristics · Not financial advice · No airdrop guarantees</span></footer>
+  </main>
+</div>
+<dialog id="method"><form method="dialog"><button class="close">×</button><h2>Methodology & risk controls</h2><p>A missing ticker or market identifier is only a discovery signal, not proof that a protocol has no token. Every candidate requires independent checks against official docs and token markets.</p><ul><li>Wrapped, staked and receipt-like products are excluded.</li><li>FDV ranges are broad TVL-multiple scenarios, not forecasts.</li><li>Farming plans describe legitimate product usage only. No reward or airdrop is implied.</li><li>Never sign unknown messages, share seed phrases or approve unlimited token allowances.</li></ul></form></dialog>
+<script src="./app.js"></script>
+</body></html>
