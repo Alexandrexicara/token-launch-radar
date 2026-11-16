@@ -1,0 +1,9 @@
+{
+  "name": "token-launch-radar",
+  "version": "1.0.0",
+  "private": false,
+  "type": "module",
+  "engines": { "node": ">=22.18.0" },
+  "scripts": { "build": "node main.ts" },
+  "license": "MIT"
+}
