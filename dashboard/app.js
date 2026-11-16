@@ -28,4 +28,4 @@ function detail(x){
 $("search").addEventListener("input",render);$("status").addEventListener("change",render);$("sort").addEventListener("change",render);
 $("fileInput").addEventListener("change",async e=>{const f=e.target.files?.[0];if(!f)return;try{load(JSON.parse(await f.text()));}catch(err){alert("Invalid board.json: "+err.message);}});
 $("methodBtn").addEventListener("click",()=>$("method").showModal());
-fetch("../board.json").then(r=>{if(!r.ok)throw Error("Board not found");return r.json();}).then(load).catch(()=>{ $("updated").textContent="NOT LOADED"; $("rows").innerHTML='<tr><td colspan="5" class="empty">Offline mode ready. Use “Load board.json” to open the generated board file.</td></tr>';});
+fetch("./board.json").then(r=>{if(!r.ok)throw Error("Board not found");return r.json();}).then(load).catch(()=>{ $("updated").textContent="NOT LOADED"; $("rows").innerHTML='<tr><td colspan="5" class="empty">No board data published yet. Generate board.json from the official snapshot, or use “Load board.json” to import it.</td></tr>';});
